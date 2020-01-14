@@ -21,6 +21,7 @@ class CreateAreasTable extends Migration
         });
 
         DB::table('areas')->insert(array('nombreArea'=>'Gerencia General'));
+        DB::table('areas')->insert(array('nombreArea'=>'Gerencia Comercial'));
         DB::table('areas')->insert(array('nombreArea'=>'Financiera'));
         DB::table('areas')->insert(array('nombreArea'=>'Cuentas'));
         DB::table('areas')->insert(array('nombreArea'=>'Operaciones'));

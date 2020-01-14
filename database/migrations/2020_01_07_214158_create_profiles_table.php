@@ -20,9 +20,9 @@ class CreateProfilesTable extends Migration
             $table->timestamps();
         });
 
-        DB::table('profiles')->insert(array('nombrePerfil'=>'Superadmin'));
+        DB::table('profiles')->insert(array('nombrePerfil'=>'superadmin'));
         DB::table('profiles')->insert(array('nombrePerfil'=>'admin'));
-        DB::table('profiles')->insert(array('nombrePerfil'=>'user web'));
+        DB::table('profiles')->insert(array('nombrePerfil'=>'usuario web'));
     }
 
     /**

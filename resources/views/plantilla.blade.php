@@ -147,6 +147,13 @@ function SidebarCollapse () {
                     <span class="menu-collapsed">Perfiles</span>
                 </div>
             </a>
+
+            <a href="{{ route('usuario') }}" class="bg-dark list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="fa fa-calendar fa-fw mr-3"><img src="../../img/usuario.png" style="width: 20px"></span>
+                    <span class="menu-collapsed">Usuarios</span>
+                </div>
+            </a>
             <!-- Separator with title -->
             <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
                 <small>OPCIONES</small>

@@ -17,6 +17,7 @@ class CreatePositionsTable extends Migration
             $table->bigIncrements('id');
             $table->string('nombreCargo');
             $table->integer('area');
+            $table->integer('perfil');
             $table->integer('estado')->default('1');
             $table->timestamps();
         });
