@@ -160,7 +160,7 @@ class PagesController extends Controller
 
         $usuario->save();
 
-        return redirect('usuario')->with('exito', 'El usuario ' . $request->nombre . ' fue creado con exito');
+        return redirect('usuario')->with('exito', 'El usuario ' . $request->nombre . $request->apellido . ' fue creado con exito');
     }
 
 
