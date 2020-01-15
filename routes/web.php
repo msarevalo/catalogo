@@ -57,7 +57,4 @@ Route::get('usuario', 'PagesController@usuarios')->name('usuario');
 
 Route::get('/usuario/crea', 'PagesController@creaUser')->name('usuario.crea');
 
-Route::get('ajax',function() {
-   return view('message');
-});
-Route::post('/usuario/select','PagesController@select');
+Route::post('/usuario', 'PagesController@crearUsuario')->name('usuario.crear');

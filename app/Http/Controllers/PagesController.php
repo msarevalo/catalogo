@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App;
 
 class PagesController extends Controller
@@ -120,14 +121,46 @@ class PagesController extends Controller
 
     public function usuarios(){
         $usuarios = App\User::paginate(5);
+        $cargos = DB::table('positions')
+            ->join('areas', 'areas.id', '=', 'positions.area')
+            ->select('positions.id', 'positions.nombreCargo', 'areas.nombreArea')->get();
 
-        return view('usuarios', compact('usuarios'));
+        return view('usuarios', compact('usuarios', 'cargos'));
     }
 
     public function creaUser(){
-        $areas = App\Area::where('estado', '=', '1')->orderBy('nombreArea', 'asc')->get();
+        $cargos = App\Position::where('estado', '=', '1')->first();
 
-        return view('usuario.create', compact('areas'));
+        if($cargos!==null){
+            $areas = App\Area::where('estado', '=', '1')->orderBy('nombreArea', 'asc')->get();
+
+            return view('usuario.create', compact('areas'));
+        }else{
+            
+            $areas = App\Area::where('estado', '=', '1')->orderBy('nombreArea', 'asc')->get();
+            $perfiles = App\Profile::where('estado', '=', '1')->orderBy('nombrePerfil', 'asc')->get();
+
+            return redirect ('cargo')->with('error', 'Es necesario un cargo activo para poder crear un usuario');
+        }
+        
+    }
+
+    public function cargosAreas($id){
+        return App\Position::where([['area', '=', $id], ['estado', '=', '1']])->select('id', 'nombreCargo')->get();
+
+    }
+
+    public function crearUsuario(Request $request){
+        $usuario = new App\User;
+        $usuario->nombres=$request->nombre;
+        $usuario->apellidos=$request->apellido;
+        $usuario->email=$request->mail;
+        $usuario->cargo=$request->cargo;
+        $usuario->password=Hash::make($request['loyalquo2020']);
+
+        $usuario->save();
+
+        return redirect('usuario')->with('exito', 'El usuario ' . $request->nombre . ' fue creado con exito');
     }
 
 
