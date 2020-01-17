@@ -22,6 +22,20 @@
         </div>
 
         <div class="form-group row">
+            <label for="sigla" class="col-md-4 col-form-label text-md-right">{{ __('Sigla') }}</label>
+
+            <div class="col-md-6">
+                <input id="sigla" type="text" class="form-control @error('sigla') is-invalid @enderror" name="sigla" value="{{ $area->sigla }}" required autocomplete="sigla" autofocus>
+
+                @error('sigla')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+
+        <div class="form-group row">
             <label for="estado" class="col-md-4 col-form-label text-md-right">{{ __('Estado') }}</label>
 
             <div class="col-md-6">

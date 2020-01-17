@@ -36,6 +36,7 @@ class PagesController extends Controller
         if ($verificacion==null) {
             $area = new App\Area;
             $area->nombreArea=$request->area;
+            $area->sigla=$request->sigla;
 
             $area->save();
 
@@ -55,6 +56,7 @@ class PagesController extends Controller
         $area = App\Area::findOrFail($id);
 
         $area->nombreArea=$request->area;
+        $area->sigla=$request->sigla;
         $area->estado=$request->estado;
 
         $area->save();

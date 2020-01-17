@@ -27,6 +27,7 @@
         <tr>
             <th scope="col-4">#</th>
             <th scope="col-4">Nombre Area</th>
+            <th scope="col-4">Sigla</th>
             <th scope="col-4">Estado</th>
             <th scope="col-4">Acciones</th>
         </tr>
@@ -39,6 +40,9 @@
                 <a href="#">
                     {{$area->nombreArea}}
                 </a>
+            </td>
+            <td>
+                {{$area->sigla}}
             </td>
             <td>
             	@if($area->estado==1)

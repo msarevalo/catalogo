@@ -16,15 +16,16 @@ class CreateAreasTable extends Migration
         Schema::create('areas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombreArea');
+            $table->string('sigla')->unique();
             $table->integer('estado')->default('1');
             $table->timestamps();
         });
 
-        DB::table('areas')->insert(array('nombreArea'=>'Gerencia General'));
-        DB::table('areas')->insert(array('nombreArea'=>'Gerencia Comercial'));
-        DB::table('areas')->insert(array('nombreArea'=>'Financiera'));
-        DB::table('areas')->insert(array('nombreArea'=>'Cuentas'));
-        DB::table('areas')->insert(array('nombreArea'=>'Operaciones'));
+        DB::table('areas')->insert(array('nombreArea'=>'Gerencia General', 'sigla'=>'GG'));
+        DB::table('areas')->insert(array('nombreArea'=>'Gerencia Comercial', 'sigla'=>'GC'));
+        DB::table('areas')->insert(array('nombreArea'=>'Financiera', 'sigla'=>'F'));
+        DB::table('areas')->insert(array('nombreArea'=>'Cuentas', 'sigla'=>'C'));
+        DB::table('areas')->insert(array('nombreArea'=>'Operaciones', 'sigla'=>'O'));
     }
 
 
