@@ -62,7 +62,7 @@
                 @endif
             </td>
             <td>
-                <a href="#" style="text-decoration: none">
+                <a href="{{ route('usuario.edita', $usuario->id) }}" style="text-decoration: none">
                         <img src="../../img/edit.png" style="width: 10%" title="Editar">
                     </a>
             </td>

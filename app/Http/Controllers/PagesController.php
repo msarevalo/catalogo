@@ -146,7 +146,7 @@ class PagesController extends Controller
     }
 
     public function cargosAreas($id){
-        return App\Position::where([['area', '=', $id], ['estado', '=', '1']])->select('id', 'nombreCargo')->get();
+        return App\Position::where([['area', '=', $id], ['estado', '=', '1']])->select('id', 'nombreCargo')->orderBy('nombreCargo', 'asc')->get();
 
     }
 
@@ -161,6 +161,96 @@ class PagesController extends Controller
         $usuario->save();
 
         return redirect('usuario')->with('exito', 'El usuario ' . $request->nombre . $request->apellido . ' fue creado con exito');
+    }
+
+    public function editaUsuario($id){
+        $usuario = App\User::findOrFail($id);
+
+        $cargos = App\Position::where('estado', '=', '1')->first();
+
+        if($cargos!==null){
+            $cargo = App\Position::where('id', '=', $usuario->cargo)->first();
+
+            $cargosArea = App\Position::where([['estado', '=', '1'], ['area', '=', $cargo->area]])->get();
+
+            $areas = App\Area::where('estado', '=', '1')->orderBy('nombreArea', 'asc')->get();
+
+            return view('usuario.edit', compact('usuario', 'areas', 'cargo', 'cargosArea'));
+        }else{
+            
+            $areas = App\Area::where('estado', '=', '1')->orderBy('nombreArea', 'asc')->get();
+            $perfiles = App\Profile::where('estado', '=', '1')->orderBy('nombrePerfil', 'asc')->get();
+
+            return redirect ('cargo')->with('error', 'Es necesario un cargo activo para poder crear un usuario');
+        }
+  
+    }
+
+    public function editarUsuario(Request $request, $id){
+        $usuario = App\User::findOrFail($id);
+
+        $usuario->nombres=$request->nombre;
+        $usuario->apellidos=$request->apellido;
+        $usuario->email=$request->mail;
+        $usuario->cargo=$request->cargo;
+        $usuario->estado=$request->estado;
+
+        $usuario->save();
+
+        return redirect('usuario')->with('exito', 'El usuario ' . $usuario->nombres . ' ' . $usuario->apellidos . ' se ha editado con exito');
+    }
+
+    
+    /********************************************************************************
+    ********Cargos********************************************************************
+    ********************************************************************************/
+
+    public function categorias(){
+
+        $categorias = DB::table('case_categories')
+            ->join('areas', 'areas.id', '=', 'case_categories.area')
+            ->select('case_categories.id', 'case_categories.categoria', 'case_categories.descripcion','areas.nombreArea', 'case_categories.estado')->get();
+
+        return view('categoria', compact('categorias'));
+    }  
+
+    public function creaCategoria(){
+        $areas = App\Area::where('estado', '=', '1')->orderBy('nombreArea', 'asc')->get();
+
+        return view('categoria.create', compact('areas'));
+    }  
+
+    public function crearCategoria(Request $request){
+        $categoria = new App\CaseCategory;
+        $categoria->categoria=$request->categoria;
+        $categoria->descripcion=$request->descripcion;
+        $categoria->area=$request->area;
+
+        $categoria->save();
+
+        return redirect('categoria')->with('exito', 'La categoria ' . $request->nombre . $request->apellido . ' fue creado con exito');
+    }
+
+    public function editaCategoria($id){
+        $categoria = App\CaseCategory::findOrFail($id);
+        $areas = App\Area::where('estado', '=', '1')->orderBy('nombreArea', 'asc')->get();
+
+        $largo = strlen($categoria->descripcion)-1;
+        
+        return view('categoria.edit', compact('categoria', 'areas', 'largo'));
+    }
+
+    public function editarCategoria(Request $request, $id){
+        $categoria = App\CaseCategory::findOrFail($id);
+
+        $categoria->categoria=$request->categoria;
+        $categoria->descripcion=$request->descripcion;
+        $categoria->area=$request->area;
+        $categoria->estado=$request->estado;
+
+        $categoria->save();
+
+        return redirect('categoria')->with('exito', 'La categoria ' . $categoria->categoria . ' se ha editado con exito');
     }
 
 

@@ -58,3 +58,21 @@ Route::get('usuario', 'PagesController@usuarios')->name('usuario');
 Route::get('/usuario/crea', 'PagesController@creaUser')->name('usuario.crea');
 
 Route::post('/usuario', 'PagesController@crearUsuario')->name('usuario.crear');
+
+Route::get('/usuario/edita/{id?}', 'PagesController@editaUsuario')->name('usuario.edita');
+
+Route::put('/usuario/{id}', 'PagesController@editarUsuario')->name('usuario.editar');
+
+/*******************************************************************
+******************Categorias****************************************
+*******************************************************************/
+
+Route::get('categoria', 'PagesController@categorias')->name('categoria');
+
+Route::get('/categoria/crea', 'PagesController@creaCategoria')->name('categoria.crea');
+
+Route::post('/categoria', 'PagesController@crearCategoria')->name('categoria.crear');
+
+Route::get('/categoria/edita/{id?}', 'PagesController@editaCategoria')->name('categoria.edita');
+
+Route::put('/categoria/{id}', 'PagesController@editarCategoria')->name('categoria.editar');

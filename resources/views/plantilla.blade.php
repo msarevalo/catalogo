@@ -52,6 +52,10 @@
     #sidebar-container .list-group li.list-group-item {
         background-color: #5D6D7E;
     }
+
+    .text-muted{
+        color: #FFFFFF !important;
+    }
     
     #sidebar-container .list-group .sidebar-submenu a {
         height: 45px;
@@ -131,27 +135,37 @@ function SidebarCollapse () {
             
             <a href="{{ route('area') }}" class="bg-dark list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-calendar fa-fw mr-3"><img src="../../img/area.png" style="width: 20px"></span>
+                    <span class="fa fa-calendar fa-fw mr-3"><img src="/img/area.png" style="width: 20px"></span>
                     <span class="menu-collapsed">Areas</span>
                 </div>
             </a>
             <a href="{{ route('cargo') }}" class="bg-dark list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-calendar fa-fw mr-3"><img src="../../img/cargo.png" style="width: 20px"></span>
+                    <span class="fa fa-calendar fa-fw mr-3"><img src="/img/cargo.png" style="width: 20px"></span>
                     <span class="menu-collapsed">Cargos</span>
                 </div>
             </a>
             <a href="{{ route('perfil') }}" class="bg-dark list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-calendar fa-fw mr-3"><img src="../../img/perfil.png" style="width: 20px"></span>
+                    <span class="fa fa-calendar fa-fw mr-3"><img src="/img/perfil.png" style="width: 20px"></span>
                     <span class="menu-collapsed">Perfiles</span>
                 </div>
             </a>
 
             <a href="{{ route('usuario') }}" class="bg-dark list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-calendar fa-fw mr-3"><img src="../../img/usuario.png" style="width: 20px"></span>
+                    <span class="fa fa-calendar fa-fw mr-3"><img src="/img/usuario.png" style="width: 20px"></span>
                     <span class="menu-collapsed">Usuarios</span>
+                </div>
+            </a>
+
+            <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+                <small>CATALOGO DE SERVICIOS</small>
+            </li>
+            <a href="{{ route('categoria') }}" class="bg-dark list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="fa fa-calendar fa-fw mr-3"><img src="/img/categoria.png" style="width: 20px"></span>
+                    <span class="menu-collapsed">Categorias</span>
                 </div>
             </a>
             <!-- Separator with title -->
